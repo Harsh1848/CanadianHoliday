@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CanadianHoliday"
+             x:Class="CanadianHoliday.MainPage">
+    <StackLayout>
+        <Label Text="Canadian Holidays" FontSize="20" HorizontalOptions="Center" Margin="0,20,0,10" />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10">
+            <Label Text="Year: " VerticalOptions="Center" />
+            <Picker x:Name="YearPicker" SelectedIndexChanged="YearPicker_SelectedIndexChanged" WidthRequest="150">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Int32}">
+                        <x:Int32>2022</x:Int32>
+                        <x:Int32>2023</x:Int32>
+                        <x:Int32>2024</x:Int32>
+                        <!-- Add more years as needed -->
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Province: " VerticalOptions="Center" Margin="20,0,0,0" />
+            <Picker x:Name="ProvincePicker" SelectedIndexChanged="ProvincePicker_SelectedIndexChanged" WidthRequest="150">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String></x:String>
+                        <x:String>Alberta</x:String>
+                        <x:String>British Columbia</x:String>
+                        <x:String>Manitoba</x:String>
+                        <!-- Add more provinces as needed -->
+                    </x:Array>
+            </Picker.ItemsSource>
+            </Picker>
+
+            <Button Text="Filter" Clicked="FilterButton_Clicked" />
+        </StackLayout>
+
+        <ListView ItemsSource="{Binding Holidays}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Name}" FontSize="16" />
+                            <Label Text="{Binding Province}" FontSize="14" TextColor="Gray" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
